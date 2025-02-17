@@ -1,4 +1,5 @@
-export default function Stock() {
+export default function Stock({ stock }) {
+  const { stockName, currentPrice, prevClosingPrice, logo } = stock;
   /* Challenge
 
     Aşağıdaki değişkenler şu anda verilerle sabit kodlanmıştır. Sizin göreviniz aşağıdakileri yaparak bunları dinamik olarak oluşturulmuş değerlere dönüştürmektir: 
@@ -32,21 +33,25 @@ export default function Stock() {
         Not: Sayıların stringlere dönüştürülmesiyle ilgili kısmı fazla düşünmeyin. Nasıl yaklaştığınıza bağlı olarak, bu challenge'ı çözerken  muhtemelen otomatik olarak gerçekleşecektir. 
 */
 
-  const stockName = "STOK";
+  // const stockName = "STOK";
 
-  const logo = "./images/question-solid.svg";
+  // const logo = "./images/question-solid.svg";
 
-  const currentPrice = "221.32";
+  // const currentPrice = "221.32";
 
-  const prevClosingPrice = "218.45";
+  // const prevClosingPrice = "218.45";
 
-  const numericalChange = "2.87";
+  const numericalChange = (currentPrice - prevClosingPrice).toFixed(2) + "$";
 
-  const rateChange = "1.31";
+  const rateChange = (
+    ((currentPrice - prevClosingPrice) / prevClosingPrice) *
+    100
+  ).toFixed(2);
 
-  const colorClass = "green";
+  const colorClass =
+    rateChange > 0 ? "green" : rateChange < 0 ? "red" : "undefined";
 
-  const arrow = "⬆";
+  const arrow = rateChange > 0 ? "⬆" : rateChange < 0 ? "⬇" : "▬";
 
   return (
     <div className="stock-container">
